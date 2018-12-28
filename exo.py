@@ -10,14 +10,14 @@ from timeout_decorator import timeout
 import time
 
 SCORE_MIN = 80
-MAX_TOTAL_TEMPS = 200
-MAX_QUESTION_TEMPS = 25
+MAX_TOTAL_TEMPS = 300
+MAX_QUESTION_TEMPS = 30
 MALUS_ERREUR = 5
 BONUS_BONNE_REPONSE = 10
 
 
 class Exo(object):
-    def __init__(self, nom):
+    def __init__(self, nom='Rachel'):
         self.nom = nom
         self.score = 0
         self.fail = 0
@@ -65,7 +65,7 @@ class Exo(object):
 
     def question_addition(self):
         a = randint(2, 1000)
-        b = randint(1, a)
+        b = randint(1, min(a, 100))
         bonne_reponse = False
         ops = {"+": operator.add, "-": operator.sub}
         op = random.choice(list(ops.keys()))
@@ -118,8 +118,8 @@ class Exo(object):
 
 
 if __name__ == '__main__':
-    nom = input("Entre ton nom cher Padawan !: \n")
-    exo = Exo(nom)
+    # nom = input("Entre ton nom cher Padawan !: \n")
+    exo = Exo(nom='Rachel')
     exo.display_score()
     exo.explication()
     exo.exercice()
